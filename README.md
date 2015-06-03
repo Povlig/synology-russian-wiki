@@ -1,4 +1,4 @@
-# synology-russian-wiki
+# Synology Википедия 
 Документация по использованию Synology NAS
 
 Идет стадия заполнения...
