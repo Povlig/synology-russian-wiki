@@ -47,7 +47,7 @@ source_encoding = 'utf-8-sig'
 master_doc = 'index'
 
 # General information about the project.
-project = 'Synology Russian WiKi'
+project = 'Synology WiKi'
 copyright = '2015, Vladimir Pozniak'
 author = 'Vladimir Pozniak'
 
@@ -56,7 +56,7 @@ author = 'Vladimir Pozniak'
 # built documents.
 #
 # The short X.Y version.
-version = '0.1'
+version = '0.2'
 # The full version, including alpha/beta/rc tags.
 release = '0.1'
 
