@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 # Synology Russian WiKi documentation build configuration file, created by
@@ -41,7 +41,7 @@ templates_path = ['_templates']
 source_suffix = '.rst'
 
 # The encoding of source files.
-#source_encoding = 'utf-8-sig'
+source_encoding = 'utf-8-sig'
 
 # The master toctree document.
 master_doc = 'index'
