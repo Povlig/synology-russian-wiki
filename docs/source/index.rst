@@ -1,5 +1,5 @@
 .. figure:: _static/synology-logo.png
-       :scale: 500 %
+       :scale: 50 %
        :align: left
        :alt: Synology logo
 
