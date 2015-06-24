@@ -47,9 +47,9 @@ source_encoding = 'utf-8-sig'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Synology Вики'
-copyright = u'2015, synology-forum.ru'
-author = u'Владимир'
+project = 'Synology Вики'
+copyright = '2015, synology-forum.ru'
+author = 'Владимир'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -285,10 +285,10 @@ texinfo_documents = [
 # -- Options for Epub output ----------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = u'Synology Вики'
-epub_author = u'Владимир'
-epub_publisher = u'Владимир'
-epub_copyright = u'2015, synology-forum.ru'
+epub_title = 'Synology Вики'
+epub_author = 'Владимир'
+epub_publisher = 'Владимир'
+epub_copyright = '2015, synology-forum.ru'
 
 # The basename for the epub file. It defaults to the project name.
 #epub_basename = u'Генератор документации Sphinx'
