@@ -1,0 +1,269 @@
+================================
+Интерфейс командной строки (CLI)
+================================
+
+
+Обзор: Что такое CLI, как получить доступ к нему, SSH или Telnet?
+---------------------------------------------------------
+
+Что такое Интерфейс Коммандной Строки (CLI)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The CLI is a Linux "shell" (a prompt based environment) provided by the Linux operating system running on the Synology Server to enable you to manage it at the Linux environment level. It is very similar to (but more powerful than) the old "DOS" environment for PC's
+
+Как получить к нему доступ
+~~~~~~~~~~~~~~~~~~
+To access the CLI you need to connect to the Synology Server using shell client software on your PC. Synology supports two methods (protocols) for the shell client to connect to the Synology Server, they are SSH and Telnet. The Synology Servers as supplied by Synology disable both SSH and Telnet. On firmware version 637 upwards you can enable the CLI using the Synology Servers own Web page based management GUI. For older versions of firmware (those prior to 637) Synology supply software patches for you to enable SSH and/or Telnet if you want to. Before you enable the CLI you should be aware this is defined by Synology as "Modifying" your product in software terms and therefore you may forfeit your right to software support as detailed in General Disclaimer on Modifying the Synology Server.
+For instructions on how to enable CLI see Enabling the Command Line Interface
+
+Какой протокол использовать - SSH или Telnet
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+SSH is generally a better option as it encrypts communication between your PC and the Synology Server making it very difficult for others to gain access to your passwords and see what you are doing. However windows PC's do not come with a SSH compatible shell application, so you would need to install one, a popular free SSH shell client is Putty as detailed on the Enabling the Command Line Interface page.
+Telnet does not encrypt the data between your PC and the Synology Server, consequently your login password for the server is passed as "free text" and hence is visible to anyone "sniffing" the communication packets. However, if you only ever use it in a closed network you consider safe then this may not be an issue for you. Most PC's including Windows come with Telnet client software.
+It is the Authors recommendation that you always use data encryption for passwords, consequently the author recommends you use SSH and install an SSH client like Putty if needed.
+
+Включение Интерфейса Коммандной Строки
+-----------------------------------
+his document will guide the user in enabling the Command Line Interface (CLI) of the Synology System. The CLI is a Linux-based Shell, where users who are familiar with this interface can perform management and manipulation of the Synology System. 
+Please note that improper manipulation or modification of the Synology server may result in machine malfunction or loss of data. 
+Please read the General Disclaimer before modifying the Synology product.
+This guide will cover two different protocols of accessing the same CLI, Telnet and SSH.
+
+Enabling the Command Line Interface
+
+This guide was written for Synology Disk Station Manager DSM2.0-0640 and above.
+Step 1:
+Begin by logging into the Synology Disk Station Manager using the Administration account.
+NewUser01.jpg
+Step 2:
+Enable the CLI as follows
+A) Open the Terminal Services Menu, from the Network Services Folder
+B) Enable the Telnet or SSH Service, if you are unsure which to use please see the section "Which Should I Use, SSH or Telnet"
+C) Click OK to confirm this operation
+DsmCLI.jpg
+Step 3:
+Check Firewall Setting (if firewall is being used)
+A) Open the Firewall Menu, from the Network Services Folder
+B) Double click enabled rule
+C) In Ports Section, press Select button next to Select from a list of built-in applications
+D) Make sure Ports 22 - SSH or 23 - Telnet are enabled
+E) Click OK twice and then Save to confirm this operation
+Service Specifications
+
+Port Numbers:
+Telnet: 23
+SSH: 22
+(Default) Login Accounts: root, admin
+Password: Same as the administrative password of the Synology System
+Note: Login will fail if password is blank/empty
+If you want to login as another user (which for command line management makes good sense -- root is root and admin is the pgsql login which is needed at boot prior to optware initialisation to start pgsql up) then
+Add the user using the DSM management page (the user needs a password in /etc/shadow)
+ssh into the device as root
+Edit /etc/passwd for the user so that their home path exists (e.g. /opt/home/username)
+Edit /etc/passwd for the user to change their shell to /bin/ash .
+NOTE: If you want to use bash (/opt/bin/bash - an extra ipkg package) instead of /bin/ash it fails for an unknown reason. Place the following in your users .profile directory to enable bash:
+if [ -x /opt/bin/bash ]; then
+ exec /opt/bin/bash
+fi
+Test new user ssh login
+Note the default /etc/profile hardwires $HOME to /root, you probably want to change that
+How to access the CLI
+
+A terminal client must be used to access the CLI, such as Windows Telnet Service, or Putty for SSH clients.
+For Telnet
+Step 1:
+Launch the Terminal Application
+For Windows Users, go to [Start] -> [Run] and type without quotes "telnet synologyServerName" where "synologyServerName" is the name of the Synology product
+Default names are: "diskstation" , "cubestation" , "rackstation"
+synologyServerName can also be replaced with the IP address of the Synology product, for example "telnet 192.168.1.10"
+Telnet06.jpg
+Step 2:
+Login using the credentials listed under "Service Specifications"
+Telnet07.jpg
+For putty (SSH)
+Step 1:
+Download and install Putty if you do not already have a SSH client.
+Step 2:
+Configure your SSH client with the correct paramters for connecting to your Synology Server. If you are using putty these are: Under "Host Name (or IP address)" enter your synology Servers IP address or server name, ensure "Port" is set to 22, ensure "Connection type" is set to SSH. If you want you can save this configuration by entering a description in the "Saved Sessions" dialogue box and click the Save button.
+Step 3:
+Start the SSH session, in putty click the "Open" button, or if you saved the configuration, double click on its name in the "Saved Sessions" list. A shell window will open and if it connects to the synology server a prompt will appear asking you to login. Login using the credentials listed under "Service Specifications". If putty could not connect to the Synology Server a blank window will open and after 1 minute a "Network Error: Connection timed out" message will appear. If this happens repeat the steps in this wiki carefully.
+The Busybox
+
+When you access the CLI (by Telnet or SSH) you are provided the same CLI provided by a small command interpreter called "Busybox" from BusyBox Origin with a few commands. An almost endless list of publicly accessible wikis discusses the features. I thus rather suggest a google search on BusyBox instead of copying content.
+
+
+Основные комманды управления Synology с помощью CLI
+-----------------------------------------------------------
+File Management
+
+To edit a text file (using vi)
+For info on how to use vi see Basic commands for Linux vi Editor
+vi /location_of_file/file_name
+To go to a directory
+cd /directoryName
+Make a directory
+mkdir /directoryName
+List contents of Directory
+dir
+Count the number of files in the current Directory and its sub-directories
+find . -type f | wc -l
+Check size of Directory and sub-directories
+du -ah /path/to/dir
+Find a file
+find / -name fileName
+Delete a file
+rm fileName
+Delete a directory and its content
+rm -r directoryName
+Note: Use this command with great care
+Move or Rename a file
+mv /sourceDirectory/sourceFile /destination
+Copy a file
+cp /sourceDirectory/sourceFile /destination
+Copy groups of files
+cp /sourceDirectory/*.* /destination
+Copy a directory and any sub directories
+cp -r -p /sourceDirectory /destinationpath
+Create a uncompressed tar (.tar) archive
+To create a uncompressed (.tar) archive of all files directories and subdirectories in the current directory:
+tar -cvf archivefilename.tar *
+Create a compressed tar (.tgz) archive
+To create a compressed (.tgz) archive of all files directories and subdirectories in the current directory:
+tar -cvzf archivefilename.tgz *
+Unpack .tar archives
+For uncompressed .tar archives:
+tar xvf file.tar
+Unpack .tar.gz archives
+For gzip compressed .tar.gz archives:
+tar xvzf file.tar.gz
+System Management
+
+Reboot the Synology box
+reboot
+Shutdown the Synology box
+poweroff
+Stop a process
+kill processID
+Stop a program
+killall programName
+Display most current processes running
+top
+Report disk space usage
+df
+Show all current processes
+ps
+Show currently open ports and their status
+netstat -an
+Change Logged in user
+If you are logged in as root you can open a new shell as if you just logged in as another user, substitute xxx with the user name. To return to root session use "exit"
+su – xxx
+Install a ipkg program package
+Note: This assumes you have already installed ipkg itself.
+ipkg install fileName
+Uninstall a ipkg program package
+ipkg remove filename
+Restart Services
+
+apache
+/usr/syno/etc/rc.d/S97apache-user.sh restart
+appletalk
+/usr/syno/etc/rc.d/S81atalk.sh restart
+cron
+/usr/syno/etc/rc.d/S04crond.sh stop
+/usr/syno/etc/rc.d/S04crond.sh start
+ftp
+/usr/syno/etc/rc.d/S99ftpd.sh restart
+index
+/usr/syno/etc/rc.d/S66synoindexd.sh restart
+itunes
+/usr/syno/etc/rc.d/S99itunes.sh restart
+mysql
+/usr/syno/etc/rc.d/S21mysql.sh restart
+nfs
+/usr/syno/etc/rc.d/S83nfsd.sh restart
+postgresql
+/usr/syno/etc/rc.d/S20pgsql.sh restart
+samba
+/usr/syno/etc/rc.d/S80samba.sh restart
+SSH
+/usr/syno/etc.defaults/rc.d/S95sshd.sh restart
+System Information
+
+Check system memory info
+cat /proc/meminfo
+Check CPU Info
+cat /proc/cpuinfo
+Check Interrupts in use
+cat /proc/interrupts
+Check File Systems in use
+cat /proc/filesystems
+Comprehensive information on the file system format
+tune2fs -l /dev/hda3
+Check Linux Version
+cat /proc/version
+Check RAID Devices
+cat /proc/mdstat
+Check Enviroment Variables
+env
+Check what physical and logical disks/partitions you have
+For multibay NASs and more info
+cat /proc/diskstats
+or for all NAS types
+cat /proc/partitions
+or for similar but different info
+fdisk -l
+Miscellaneous
+
+Clear terminal screen
+clear
+
+Основные комманды редактора vi 
+--------------------------------------
+The Linux VI Editor is a text based editor used Linux, useful for editing configuration files or creating plain text documents.
+vi is started by simply entering "vi" (it is case sensitive) at the linux prompt, and once started is exited using ESC:q! to abandon changes or SHIFT+ZZ (case sensitve) to save changes. If you want to edit (or create) a specific file use the command "vi /path_to_file/name_of_file". "path_to_file" must already exist as vi will not make any required directories.
+Command	Description
+i	insert mode, (ESC to exit insert mode) allows text to be entered on the screen
+a	Append to right mode
+/word	Move to the occurrence of "word"
+n	Locate the next occurrence
+w	Advance to the next word
+e	Advance to the next end of a word
+b	Move to the previous word
+3b	Move backward 3 words
+yy	Copy line (then move cursor and use p to paste after current cursor line)
+dd	delete line
+3dd	delete 3 lines
+D	Delete remainder of a line
+dw	Delete word
+x	Delete character
+o	Open space for new line below the cursor line
+O	Open a line above the cursor
+CTRL-w	Move back a word in append mode
+u	Undo last
+U	Undo all changes to current line
+.	In command mode, repeat the last text changing the command on the current line
+:w newfilename	save the file to newfilename from the command mode
+:wq	save and quit
+:q!	quit without saving
+r	replace then typa a character ot be replaced with r then return to break up a line
+J	join 2 lines
+s	substitute (sentence) typed text over a character, ESC when done
+cw	change word
+c	change part of a line from the cursor to the end of the line
+cc	substitute new text for aline, ESC when done
+h	move the cursor back one space
+H	move the cursor to the highest line on the screen
+L	move the cursor to the lowest line on the screen
+M	position the cursor at the midpoint on the screen
+G	last line in the file
+0 (zero)	Move the cursor to the beginning of the line it is on
+view filename	Open a file for viewing only
+set number	Turn on line numbers
+set nonumber	Turn off line numbers
+Options
+autoindent	(ai ctrl-d to move to the left
+showmatch	match brackets and parenthesis
+tabstop=4	
+wrapmargine(wm)	when line is wrapped (80-value)
+:2 copy 4	Place a copy of line 2 after line 4.
+:1,4 copy 7	(lines 1-4)
+:n	Access the next file for editing
