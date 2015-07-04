@@ -93,7 +93,7 @@ exclude_patterns = ['_build']
 #show_authors = False
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+# pygments_style = 'sphinx'
 
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
@@ -220,8 +220,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'SynologyRussianWiKi.tex', 'Synology Вики',
-   'Vladimir', 'manual'),
+  (master_doc, 'SynologyRussianWiKi.tex', u'Synology Вики',
+   u'Vladimir', u'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -265,7 +265,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   (master_doc, 'SynologyRussianWiKi', u'Synology Вики',
-   author, u'SynologyRussianWiKi', u'One line description of project.',
+   author, 'SynologyRussianWiKi', 'One line description of project.',
    'Miscellaneous'),
 ]
 
