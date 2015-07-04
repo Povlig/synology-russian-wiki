@@ -49,7 +49,7 @@ master_doc = 'index'
 # General information about the project.
 project = u'Synology Вики'
 copyright = u'2015, synology-forum.ru'
-author = u'Владимир'
+
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -65,7 +65,7 @@ release = '1.0'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = 'ru'
+#language = 'ru'
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
@@ -109,7 +109,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'sphinx_rtd_theme'
+html_theme = "sphinx_rtd_theme"
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -250,8 +250,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'synologyrussianwiki', u'Synology Вики',
-     [author], 1)
+    (master_doc, 'synologyrussianwiki', u'Synology Вики', 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -265,7 +264,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   (master_doc, 'SynologyRussianWiKi', u'Synology Вики',
-   author, 'SynologyRussianWiKi', 'One line description of project.',
+   'SynologyRussianWiKi', 'One line description of project.',
    'Miscellaneous'),
 ]
 
