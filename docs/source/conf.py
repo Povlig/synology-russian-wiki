@@ -15,7 +15,7 @@
 
 import sys
 import os
-import sphinx_rtd_theme
+# import sphinx_rtd_theme
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -41,15 +41,15 @@ templates_path = ['_templates']
 source_suffix = '.rst'
 
 # The encoding of source files.
-source_encoding = 'utf-8-sig'
+# source_encoding = 'utf-8-sig'
 
 # The master toctree document.
 master_doc = 'index'
 
 # General information about the project.
-project = 'Synology Вики'
-copyright = '2015, synology-forum.ru'
-author = 'Владимир'
+project = u'Synology Вики'
+copyright = u'2015, synology-forum.ru'
+author = u'Владимир'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -93,7 +93,7 @@ exclude_patterns = ['_build']
 #show_authors = False
 
 # The name of the Pygments (syntax highlighting) style to use.
-# pygments_style = 'sphinx'
+pygments_style = 'sphinx'
 
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
@@ -102,7 +102,7 @@ exclude_patterns = ['_build']
 #keep_warnings = False
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
-todo_include_todos = False
+# todo_include_todos = False
 
 
 # -- Options for HTML output ----------------------------------------------
@@ -214,11 +214,6 @@ latex_elements = {
 
 # Latex figure (float) alignment
 #'figure_align': 'htbp',
-'preamble': '\\usepackage[utf8]{inputenc}',
-'babel': '\\usepackage[russian]{babel}',
-'cmappkg': '\\usepackage{cmap}',
-'fontenc': '\\usepackage[T1,T2A]{fontenc}',
-'utf8extra':'\\DeclareUnicodeCharacter{00A0}{\\nobreakspace}',
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
@@ -269,8 +264,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'SynologyRussianWiKi', 'Synology Вики',
-   author, 'SynologyRussianWiKi', 'One line description of project.',
+  (master_doc, 'SynologyRussianWiKi', u'Synology Вики',
+   author, u'SynologyRussianWiKi', u'One line description of project.',
    'Miscellaneous'),
 ]
 
@@ -289,10 +284,10 @@ texinfo_documents = [
 # -- Options for Epub output ----------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = 'Synology Вики'
-epub_author = 'Владимир'
-epub_publisher = 'Владимир'
-epub_copyright = '2015, synology-forum.ru'
+epub_title = u'Synology Вики'
+epub_author = u'Владимир'
+epub_publisher = u'Владимир'
+epub_copyright = u'2015, synology-forum.ru'
 
 # The basename for the epub file. It defaults to the project name.
 #epub_basename = u'Генератор документации Sphinx'
