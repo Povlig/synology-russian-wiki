@@ -1,0 +1,4 @@
+Test SSH:
+  script:
+  # try to connect 
+  - ssh admin@localhost
